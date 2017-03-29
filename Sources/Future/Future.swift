@@ -22,8 +22,6 @@ import ExecutionContext
 
 public protocol FutureProtocol : MovableExecutionContextTenantProtocol {
     associatedtype Value
-    //Can not workaround as a protocol, because protocol can't set itself as a requirement
-    typealias SettledTenant = Future<Value>
     
     init(value:Value)
     init(error:Error)

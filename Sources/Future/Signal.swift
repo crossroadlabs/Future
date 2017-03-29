@@ -21,7 +21,7 @@ import Result
 import Event
 
 public extension SignalStream {
-    public func flatMap<A, F : FutureProtocol>(_ f:@escaping (Payload)->F) -> SignalStream<Result<A, AnyError>> where F.Value == A {
+    public func flatMap<A, F : FutureProtocol>(_ f:@escaping (Payload)->F) -> SignalStream<Result<A, AnyError>> where F.Value == A, F.SettledTenant == Future<A> {
         let context = self.context
         return SignalStream<Result<A, AnyError>>(context: context, advise: { fun in
             self.chain { sig, payload in
